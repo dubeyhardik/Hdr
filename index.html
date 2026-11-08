@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Tanya & Vikram — Royal Maroon & Gold Scroll-Driven Wedding</title>
+
+  <!-- Google Fonts: Royal Serif, Cursive Script & Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Royal Maroon & Antique Gold Palette */
+      --bg-maroon-deep: #2B0509;
+      --bg-maroon-main: #420B13;
+      --bg-maroon-card: #54101A;
+      --bg-maroon-glass: rgba(66, 11, 19, 0.78);
+      
+      --gold-bright: #F7DF94;
+      --gold-primary: #E2BE66;
+      --gold-muted: #C29F4C;
+      --gold-border: rgba(226, 190, 102, 0.42);
+      --gold-glow: rgba(247, 223, 148, 0.25);
+
+      --font-script: 'Great Vibes', cursive;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-hindi: 'Tiro Devanagari Hindi', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #140204;
+    }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--gold-primary);
+      background-color: var(--bg-maroon-main);
+      background-image: 
+        radial-gradient(rgba(226, 190, 102, 0.06) 1px, transparent 0),
+        radial-gradient(circle at 50% 20%, #5C111C 0%, #3A0810 55%, #240408 100%);
+      background-size: 26px 26px, 100% 100%;
+      background-attachment: fixed;
+      max-width: 480px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+      min-height: 100vh;
+    }
+
+    /* Gold Shimmer Text Utility */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF0BE 0%, #E2BE66 45%, #B88E35 75%, #F7DF94 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.45);
+    }
+
+    /* =========================================================
+       1. SCROLL-DRIVEN STARTING SEQUENCE (320vh STICKY TRACK)
+       (Doors -> Peacock & Lotus Courtyard -> Ganpati Bappa)
+       ========================================================= */
+    .scroll-sequence-track {
+      position: relative;
+      height: 320vh; /* Scroll length that drives the opening frames */
+      width: 100%;
+    }
+
+    .sticky-sequence-viewport {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background: var(--bg-maroon-deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold-border);
+    }
+
+    /* Direct Video Scrubber (Put your video file name in src) */
+    .scroll-scrub-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* 3-Frame Fallback / Preview Layers (Visible if video src is blank) */
+    .seq-frame-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+      transition: opacity 0.2s linear, transform 0.2s linear;
+      z-index: 1;
+    }
+
+    /* Frame 1: Royal Doors & Diyas (0% - 35% scroll) */
+    .seq-frame-1 {
+      background: radial-gradient(circle at 50% 48%, rgba(247, 201, 102, 0.28) 0%, #3E0B12 52%, #1E0306 100%);
+    }
+
+    /* Frame 2: Lotus, Peacock & Flying Doves Arch (35% - 68% scroll) */
+    .seq-frame-2 {
+      background: radial-gradient(circle at 50% 45%, #691724 0%, #3B0910 70%, #1F0407 100%);
+      opacity: 0;
+    }
+
+    /* Frame 3: Marble Lord Ganesha & Golden "श्री गणेशाय नमः" (68% - 100% scroll) */
+    .seq-frame-3 {
+      background: radial-gradient(circle at 50% 40%, rgba(247, 223, 148, 0.22) 0%, #4A0D16 65%, #240408 100%);
+      opacity: 0;
+    }
+
+    .seq-slot-box {
+      border: 1.5px dashed var(--gold-primary);
+      background: rgba(36, 4, 8, 0.68);
+      backdrop-filter: blur(6px);
+      padding: 20px 18px;
+      border-radius: 16px;
+      max-width: 330px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .ganesha-calligraphy {
+      font-family: var(--font-hindi);
+      font-size: 2.7rem;
+      color: var(--gold-bright);
+      text-shadow: 0 0 18px rgba(247, 223, 148, 0.75), 0 4px 12px rgba(0,0,0,0.9);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    /* Top Overlay Text on Opening Sequence */
+    .seq-top-bar {
+      position: relative;
+      z-index: 5;
+      padding-top: 48px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .seq-invited-script {
+      font-family: var(--font-script);
+      font-size: 3rem;
+      color: var(--gold-bright);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.9);
+    }
+
+    .seq-invited-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-top: 4px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+    }
+
+    /* Bottom Scroll Progress Pill inside Opening Sequence */
+    .seq-bottom-bar {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      padding: 20px 24px 32px;
+      background: linear-gradient(180deg, transparent 0%, rgba(36, 4, 8, 0.9) 70%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-progress-line {
+      width: 160px;
+      height: 3px;
+      background: rgba(226, 190, 102, 0.25);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .scroll-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--gold-bright);
+      box-shadow: 0 0 10px var(--gold-bright);
+      transition: width 0.08s linear;
+    }
+
+    .scroll-status-label {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold-bright);
+      letter-spacing: 0.04em;
+    }
+
+    /* =========================================================
+       SCROLL-DRIVEN REVEAL ANIMATION CLASSES
+       ========================================================= */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(36px) scale(0.98);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Blank Image Placeholder Styling (Maroon & Gold) */
+    .img-placeholder {
+      background: linear-gradient(145deg, rgba(84, 16, 26, 0.75), rgba(43, 5, 9, 0.85));
+      border: 1.5px dashed var(--gold-primary);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: var(--gold-primary);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .img-placeholder svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--gold-bright);
+      margin-bottom: 8px;
+      opacity: 0.85;
+    }
+
+    .img-placeholder span.slot-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      display: block;
+    }
+
+    .img-placeholder span.slot-sub {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--gold-muted);
+      margin-top: 4px;
+    }
+
+    /* Typography & Dividers */
+    .script-heading {
+      font-family: var(--font-script);
+      font-size: 3.2rem;
+      font-weight: 400;
+      color: var(--gold-bright);
+      line-height: 1.15;
+      text-align: center;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .floral-divider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 6px auto 26px;
+      width: 210px;
+      height: 28px;
+    }
+
+    .uppercase-track {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      color: var(--gold-muted);
+      font-weight: 600;
+    }
+
+    section {
+      padding: 50px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* 2. HERO COUPLE SECTION */
+    .hero-section {
+      padding: 0;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      background: linear-gradient(180deg, #2B0509 0%, #4A0D16 50%, var(--bg-maroon-main) 100%);
+    }
+
+    .hero-img-slot {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border: none;
+      border-radius: 0;
+      background: radial-gradient(circle at 50% 45%, rgba(92, 17, 28, 0.65), rgba(36, 4, 8, 0.92));
+      justify-content: flex-end;
+      padding-bottom: 185px;
+    }
+
+    .hero-img-slot .slot-badge {
+      border: 1px dashed var(--gold-primary);
+      background: rgba(36, 4, 8, 0.7);
+      padding: 14px 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+    }
+
+    .hero-arch-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 110px 20px 30px;
+    }
+
+    .hero-welcome {
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      color: var(--gold-primary);
+    }
+
+    .hero-names {
+      font-family: var(--font-script);
+      font-size: 3.8rem;
+      line-height: 1.05;
+      color: var(--gold-bright);
+      text-shadow: 0 3px 16px rgba(0,0,0,0.7);
+    }
+
+    .hero-amp {
+      font-family: var(--font-script);
+      font-size: 2.1rem;
+      display: block;
+      margin: 2px 0;
+      color: var(--gold-primary);
+    }
+
+    .hero-city {
+      letter-spacing: 0.3em;
+      font-size: 0.9rem;
+      color: var(--gold-bright);
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .hero-bottom-fade {
+      position: relative;
+      z-index: 3;
+      background: linear-gradient(180deg, transparent 0%, rgba(66, 11, 19, 0.9) 50%, var(--bg-maroon-main) 100%);
+      padding: 65px 20px 24px;
+      text-align: center;
+    }
+
+    .scroll-down-text {
+      font-family: var(--font-script);
+      font-size: 2.1rem;
+      color: var(--gold-bright);
+      display: block;
+    }
+
+    /* 3. THE DATE (SCRATCH TO REVEAL - MAROON & GOLD) */
+    .scratch-hint {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold-primary);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .date-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 380px;
+      margin: 0 auto 10px;
+    }
+
+    .date-card-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .date-card {
+      width: 100%;
+      height: 126px;
+      background: linear-gradient(160deg, #5A111C 0%, #38070E 100%);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 12px;
+      box-shadow: inset 0 0 15px rgba(247, 223, 148, 0.15), 0 6px 18px rgba(0, 0, 0, 0.45);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .date-card-value {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--gold-bright);
+    }
+
+    .date-card-value.month-text {
+      font-size: 1.45rem;
+    }
+
+    .scratch-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      touch-action: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .date-label {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      color: var(--gold-muted);
+      text-transform: uppercase;
+    }
+
+    .date-subtext {
+      margin-top: 26px;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--gold-bright);
+    }
+
+    .date-subtext p + p {
+      color: var(--gold-primary);
+      font-size: 1.15rem;
+    }
+
+    .calendar-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--gold-bright);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-primary);
+      padding-bottom: 2px;
+    }
+
+    /* 4. FORMAL ARCH INVITATION CARD */
+    .arch-card-section {
+      padding: 30px 18px;
+    }
+
+    .royal-arch-frame {
+      position: relative;
+      padding: 75px 22px 48px;
+      border: 2px solid var(--gold-primary);
+      border-radius: 220px 220px 16px 16px;
+      background: linear-gradient(180deg, rgba(90, 17, 28, 0.7) 0%, rgba(43, 5, 9, 0.85) 100%);
+      box-shadow: inset 0 0 0 6px var(--bg-maroon-main), inset 0 0 0 7.5px var(--gold-border), 0 12px 35px rgba(0,0,0,0.5);
+    }
+
+    .monogram-circle {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-bright);
+      box-shadow: inset 0 0 0 3px var(--bg-maroon-main), inset 0 0 0 4px var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--gold-bright);
+      letter-spacing: -4px;
+    }
+
+    .monogram-circle span.v-drop {
+      transform: translateY(6px);
+      display: inline-block;
+    }
+
+    .ganesh-mantra {
+      font-family: var(--font-hindi);
+      font-size: 1.15rem;
+      color: var(--gold-bright);
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .invite-intro {
+      font-style: italic;
+      font-size: 1.22rem;
+      color: var(--gold-primary);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .bride-groom-script {
+      font-family: var(--font-script);
+      font-size: 3.25rem;
+      color: var(--gold-bright);
+      font-weight: 400;
+      margin: 8px 0 12px;
+      line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    }
+
+    .parents-block {
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1.85;
+      color: var(--gold-primary);
+      margin: 8px 0;
+    }
+
+    .parents-block .relation {
+      font-size: 0.72rem;
+      color: var(--gold-muted);
+      letter-spacing: 0.24em;
+    }
+
+    .with-script {
+      font-family: var(--font-script);
+      font-size: 2.2rem;
+      color: var(--gold-bright);
+      margin: 10px 0 4px;
+    }
+
+    .arch-footer-date {
+      margin-top: 28px;
+      font-size: 1.22rem;
+      color: var(--gold-bright);
+    }
+
+    .arch-footer-venue {
+      font-style: italic;
+      font-size: 1.12rem;
+      color: var(--gold-primary);
+      margin-top: 4px;
+    }
+
+    /* 5. OUR STORY & TIMELINE */
+    .story-para {
+      font-size: 1.24rem;
+      line-height: 1.65;
+      color: var(--gold-primary);
+      max-width: 340px;
+      margin: 0 auto 34px;
+    }
+
+    .story-timeline {
+      position: relative;
+      text-align: left;
+      max-width: 350px;
+      margin: 0 auto 48px;
+      padding-left: 28px;
+    }
+
+    .story-timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 12px;
+      bottom: 12px;
+      width: 1px;
+      background-color: var(--gold-primary);
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-diamond {
+      position: absolute;
+      left: -27px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      background-color: var(--gold-bright);
+      border: 1.2px solid var(--bg-maroon-main);
+      transform: rotate(45deg);
+      box-shadow: 0 0 8px var(--gold-bright);
+    }
+
+    .timeline-year {
+      font-family: var(--font-script);
+      font-size: 2.1rem;
+      color: var(--gold-bright);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 1.12rem;
+      color: var(--gold-primary);
+      line-height: 1.45;
+    }
+
+    .couple-arches-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .arch-photo-slot {
+      height: 215px;
+      border-radius: 110px 110px 12px 12px;
+      border: 2px solid var(--gold-primary);
+    }
+
+    /* 6. THE CELEBRATIONS */
+    .events-Wrapper {
+      position: relative;
+      max-width: 400px;
+      margin: 10px auto 0;
+    }
+
+    .events-Wrapper::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 15px;
+      bottom: 15px;
+      width: 1px;
+      background-color: var(--gold-border);
+      transform: translateX(-50%);
+    }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .event-center-diamond {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      background-color: var(--gold-bright);
+      border: 2px solid var(--bg-maroon-main);
+      transform: translate(-50%, -50%) rotate(45deg);
+      z-index: 2;
+      box-shadow: 0 0 10px var(--gold-bright);
+    }
+
+    .event-art-slot {
+      height: 190px;
+      border-radius: 14px;
+    }
+
+    .event-details {
+      text-align: left;
+      padding: 4px 6px;
+    }
+
+    .event-details.right-align {
+      text-align: right;
+    }
+
+    .event-day {
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 4px;
+    }
+
+    .event-time {
+      font-family: var(--font-script);
+      font-size: 2.55rem;
+      line-height: 1.05;
+      margin-bottom: 4px;
+      color: var(--gold-bright);
+    }
+
+    .event-name-en {
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--gold-bright);
+      line-height: 1.15;
+    }
+
+    .event-name-hi {
+      font-family: var(--font-hindi);
+      font-size: 1.05rem;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+    }
+
+    .event-venue-note {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gold-muted);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    /* 7. COUNTDOWN & LOCATION */
+    .countdown-row {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 10px;
+      margin: 14px auto 18px;
+    }
+
+    .cd-unit {
+      text-align: center;
+      min-width: 62px;
+    }
+
+    .cd-number {
+      font-size: 2.9rem;
+      font-weight: 500;
+      color: var(--gold-bright);
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .cd-label {
+      font-size: 0.85rem;
+      color: var(--gold-muted);
+      margin-top: 6px;
+    }
+
+    .cd-colon {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      transform: translateY(-12px);
+    }
+
+    .cd-subtext {
+      font-style: italic;
+      font-size: 1.14rem;
+      color: var(--gold-primary);
+    }
+
+    .location-city {
+      font-size: 1.35rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 12px;
+    }
+
+    .location-venue {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+    }
+
+    .location-address {
+      font-size: 1.16rem;
+      color: var(--gold-primary);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .haveli-banner-slot {
+      width: calc(100% + 48px);
+      margin-left: -24px;
+      height: 270px;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      margin-bottom: 28px;
+    }
+
+    .map-card-container {
+      width: 100%;
+      height: 260px;
+      border-radius: 12px;
+      border: 1.5px solid var(--gold-primary);
+      background-color: #38070E;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+    }
+
+    .map-roads-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .show-map-pill {
+      position: relative;
+      z-index: 2;
+      background-color: var(--bg-maroon-card);
+      border: 1px solid var(--gold-primary);
+      padding: 10px 26px;
+      border-radius: 30px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--gold-bright);
+      cursor: pointer;
+    }
+
+    .map-iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      z-index: 5;
+      display: none;
+    }
+
+    .google-maps-btn {
+      display: inline-block;
+      width: 100%;
+      max-width: 310px;
+      background: linear-gradient(135deg, #E2BE66 0%, #B88E35 100%);
+      color: #2B0509;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 15px 24px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    /* 8. GETTING THERE & DRESS CODE */
+    .travel-text {
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: var(--gold-primary);
+      max-width: 330px;
+      margin: 0 auto 22px;
+    }
+
+    .stay-venue-bold {
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+    }
+
+    .dress-illustration-slot {
+      width: 100%;
+      height: 220px;
+      margin: 22px 0 26px;
+    }
+
+    .dress-table {
+      text-align: left;
+      border-top: 1px solid var(--gold-border);
+    }
+
+    .dress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .dress-event-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--gold-bright);
+    }
+
+    .dress-event-title span {
+      font-family: var(--font-hindi);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--gold-primary);
+      margin-left: 6px;
+    }
+
+    .dress-hint-sub {
+      font-size: 1.08rem;
+      color: var(--gold-muted);
+      margin-top: 4px;
+    }
+
+    .swatches-group {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .color-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-bright);
+    }
+
+    /* 9. OUR FAMILIES & RSVP */
+    .family-group {
+      margin-bottom: 30px;
+    }
+
+    .family-names {
+      font-size: 1.25rem;
+      line-height: 1.65;
+      color: var(--gold-bright);
+      margin-top: 8px;
+    }
+
+    .kids-callout {
+      font-style: italic;
+      font-size: 1.26rem;
+      color: var(--gold-bright);
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .song-player-box {
+      background: var(--bg-maroon-card);
+      border: 1px solid var(--gold-primary);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 340px;
+      margin: 0 auto 36px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .song-play-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E2BE66, #B88E35);
+      color: #2B0509;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .rsvp-box {
+      background: var(--bg-maroon-card);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 16px;
+      padding: 26px 20px;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+
+    .rsvp-input, .rsvp-select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      background: var(--bg-maroon-deep);
+      border: 1px solid var(--gold-primary);
+      border-radius: 8px;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--gold-bright);
+    }
+
+    .rsvp-input::placeholder {
+      color: var(--gold-muted);
+    }
+
+    .rsvp-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #F7DF94 0%, #D4A849 100%);
+      color: #2B0509;
+      font-weight: 700;
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* FLOATING CONTROLS */
+    .floating-controls {
+      position: fixed;
+      bottom: 22px;
+      right: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .lang-pill {
+      width: 44px;
+      height: 36px;
+      border-radius: 18px;
+      background: var(--bg-maroon-card);
+      border: 1px solid var(--gold-primary);
+      font-family: var(--font-hindi);
+      font-size: 1rem;
+      color: var(--gold-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    }
+
+    .audio-fab {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E2BE66, #9E7322);
+      border: 1.5px solid var(--gold-bright);
+      color: #2B0509;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reusable Gold SVG Floral Divider -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <g id="royal-floral-divider">
+        <path d="M15,14 Q45,6 75,14 T105,14 T135,14 T195,14" fill="none" stroke="#E2BE66" stroke-width="1.2"/>
+        <circle cx="105" cy="14" r="6" fill="#7A1422" stroke="#F7DF94" stroke-width="1.4"/>
+        <circle cx="105" cy="14" r="2.5" fill="#F7DF94"/>
+        <circle cx="86" cy="12" r="3" fill="#E2BE66"/>
+        <circle cx="124" cy="12" r="3" fill="#E2BE66"/>
+        <circle cx="68" cy="15" r="2.5" fill="#C29F4C"/>
+        <circle cx="142" cy="15" r="2.5" fill="#C29F4C"/>
+        <path d="M93,14 L88,8 M117,14 L122,8 M76,14 L71,19 M134,14 L139,19" stroke="#F7DF94" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- =========================================================
+       1. SCROLL-DRIVEN OPENING SEQUENCE (320vh)
+       Scroll down to scrub: Doors -> Peacock/Lotus -> Ganpati Bappa
+       ========================================================= -->
+  <div class="scroll-sequence-track" id="scroll-sequence-track">
+    <div class="sticky-sequence-viewport">
+      
+      <!-- Optional Video Scrubber: Put your video filename in src="intro.mp4" -->
+      <video class="scroll-scrub-video" id="scroll-video" playsinline muted preload="auto" src=""></video>
+
+      <!-- Top Invite Header -->
+      <div class="seq-top-bar">
+        <div class="seq-invited-script">You're invited</div>
+        <div class="seq-invited-sub">TO A ROYAL WEDDING IN UDAIPUR</div>
+      </div>
+
+      <!-- FRAME 1 (0% - 35% Scroll): Royal Carved Doors + Glowing Seam + Diyas -->
+      <div class="seq-frame-layer seq-frame-1" id="seq-frame-1" data-slot="start-frame-1-doors">
+        <div class="seq-slot-box">
+          <span style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-bright);">[ Starting Frame 1 (0:00 - 0:01) ]</span>
+          <h3 style="font-family:var(--font-script); font-size:2.4rem; color:var(--gold-bright); margin:6px 0;">Royal Haveli Doors</h3>
+          <p style="font-size:0.95rem; color:var(--gold-primary);">Carved wooden doors with golden light beam, marigold garlands &amp; lit diyas at threshold</p>
+        </div>
+      </div>
+
+      <!-- FRAME 2 (35% - 68% Scroll): Pink Lotuses, Peacock & White Doves Courtyard -->
+      <div class="seq-frame-layer seq-frame-2" id="seq-frame-2" data-slot="start-frame-2-courtyard">
+        <div class="seq-slot-box">
+          <span style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-bright);">[ Starting Frame 2 (0:02 - 0:03) ]</span>
+          <h3 style="font-family:var(--font-script); font-size:2.4rem; color:var(--gold-bright); margin:6px 0;">Royal Courtyard Arch</h3>
+          <p style="font-size:0.95rem; color:var(--gold-primary);">Doors open to reveal blooming pink lotuses, royal peacock on pillar &amp; flying white doves</p>
+        </div>
+      </div>
+
+      <!-- FRAME 3 (68% - 100% Scroll): White Marble Lord Ganesha & Golden "श्री गणेशाय नमः" -->
+      <div class="seq-frame-layer seq-frame-3" id="seq-frame-3" data-slot="start-frame-3-ganesha">
+        <div class="ganesha-calligraphy">श्री गणेशाय नमः</div>
+        <div class="seq-slot-box">
+          <span style="font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-bright);">[ Starting Frame 3 (0:04 - 0:07) ]</span>
+          <h3 style="font-family:var(--font-script); font-size:2.4rem; color:var(--gold-bright); margin:6px 0;">Ganpati Bappa Darshan</h3>
+          <p style="font-size:0.95rem; color:var(--gold-primary);">White marble Lord Ganesha on lotus pedestal with brass temple bells &amp; glowing diyas</p>
+        </div>
+      </div>
+
+      <!-- Bottom Scroll Scrubber Progress Indicator -->
+      <div class="seq-bottom-bar">
+        <span class="scroll-status-label" id="seq-step-label">Scroll down to open the royal doors...</span>
+        <div class="scroll-progress-line">
+          <div class="scroll-progress-fill" id="seq-progress-fill"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       2. HERO COUPLE SECTION (MAROON & GOLD)
+       ========================================================= -->
+  <section class="hero-section">
+    <svg class="hero-arch-svg" viewBox="0 0 400 260" preserveAspectRatio="none">
+      <path d="M0,0 L400,0 L400,240 C385,200 375,155 345,130 C335,100 310,85 280,75 C255,45 225,35 200,20 C175,35 145,45 120,75 C90,85 65,100 55,130 C25,155 15,200 0,240 Z" fill="#240408" opacity="0.85" stroke="#E2BE66" stroke-width="1.2"/>
+    </svg>
+
+    <!-- BLANK IMAGE SLOT 1: HERO COUPLE -->
+    <div class="img-placeholder hero-img-slot" data-slot="hero-couple-udaipur">
+      <div class="slot-badge">
+        <span class="slot-title">[ Image Slot 1: Hero Couple &amp; Arch ]</span>
+        <span class="slot-sub">Udaipur Lake Palace couple photo yahan aayega</span>
+      </div>
+    </div>
+
+    <div class="hero-content reveal-on-scroll">
+      <p class="hero-welcome" data-en="Welcome to the wedding of" data-hi="हमारे विवाह उत्सव में आपका स्वागत है">Welcome to the wedding of</p>
+      <h1 class="hero-names">
+        Tanya
+        <span class="hero-amp">&amp;</span>
+        Vikram
+      </h1>
+      <div class="floral-divider" style="margin: 10px auto;">
+        <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+      </div>
+      <p class="hero-city">Udaipur</p>
+    </div>
+
+    <div class="hero-bottom-fade">
+      <span class="scroll-down-text">Scroll down</span>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3. THE DATE (SCRATCH TO REVEAL)
+       ========================================================= -->
+  <section id="the-date" class="reveal-on-scroll">
+    <h2 class="script-heading" data-en="The Date" data-hi="शुभ तारीख">The Date</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <p class="scratch-hint">
+      <span>✦</span>
+      <span data-en="Scratch to reveal the date" data-hi="तारीख देखने के लिए स्क्रैच करें">Scratch to reveal the date</span>
+      <span>✦</span>
+    </p>
+
+    <div class="date-cards-grid">
+      <div class="date-card-wrap">
+        <div class="date-card">
+          <span class="date-card-value">14</span>
+          <canvas class="scratch-canvas"></canvas>
+        </div>
+        <span class="date-label">DAY</span>
+      </div>
+      <div class="date-card-wrap">
+        <div class="date-card">
+          <span class="date-card-value month-text">February</span>
+          <canvas class="scratch-canvas"></canvas>
+        </div>
+        <span class="date-label">MONTH</span>
+      </div>
+      <div class="date-card-wrap">
+        <div class="date-card">
+          <span class="date-card-value">2027</span>
+          <canvas class="scratch-canvas"></canvas>
+        </div>
+        <span class="date-label">YEAR</span>
+      </div>
+    </div>
+
+    <div class="date-subtext">
+      <p>Sunday, at 7:00 pm</p>
+      <p>By the lake, with dinner after the pheras</p>
+    </div>
+
+    <a href="#celebrations" class="calendar-link">Add to calendar</a>
+  </section>
+
+  <!-- =========================================================
+       4. FORMAL ARCH INVITATION CARD
+       ========================================================= -->
+  <section class="arch-card-section reveal-on-scroll">
+    <div class="royal-arch-frame">
+      <div class="monogram-circle">
+        <span>T</span><span class="v-drop">V</span>
+      </div>
+
+      <p class="ganesh-mantra">॥ श्री गणेशाय नमः ॥</p>
+      <div class="floral-divider" style="margin-bottom: 18px;">
+        <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+      </div>
+
+      <p class="invite-intro">
+        With the blessings of our elders,<br>
+        you are invited to the wedding of
+      </p>
+
+      <h2 class="bride-groom-script">Tanya Sharma</h2>
+
+      <div class="parents-block">
+        <div class="relation">DAUGHTER OF</div>
+        <div>SMT. ANJALI &amp;</div>
+        <div>SHRI RAJEEV SHARMA</div>
+      </div>
+
+      <div class="with-script">with</div>
+
+      <h2 class="bride-groom-script">Vikram Mehra</h2>
+
+      <div class="parents-block">
+        <div class="relation">SON OF</div>
+        <div>SMT. KAVITA &amp;</div>
+        <div>SHRI SUNIL MEHRA</div>
+      </div>
+
+      <p class="arch-footer-date">Sunday, 14 February 2027</p>
+      <p class="arch-footer-venue">The Haveli, Lake Pichola, Udaipur</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. OUR STORY & US SO FAR
+       ========================================================= -->
+  <section id="our-story" class="reveal-on-scroll">
+    <h2 class="script-heading">Our story</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <p class="story-para">
+      We met at a friend's Holi in Indore, both trying to stay out of the colour. Five years, one long year apart and many plates of poha later, we are getting married.
+    </p>
+
+    <div class="story-timeline">
+      <div class="timeline-node reveal-on-scroll">
+        <span class="timeline-diamond"></span>
+        <h3 class="timeline-year">Holi 2021</h3>
+        <p class="timeline-desc">Two people hiding from the colour, together</p>
+      </div>
+      <div class="timeline-node reveal-on-scroll">
+        <span class="timeline-diamond"></span>
+        <h3 class="timeline-year">2023</h3>
+        <p class="timeline-desc">Indore and Bengaluru, one long call a night</p>
+      </div>
+      <div class="timeline-node reveal-on-scroll">
+        <span class="timeline-diamond"></span>
+        <h3 class="timeline-year">Diwali 2025</h3>
+        <p class="timeline-desc">Both families said yes over one plate of mithai</p>
+      </div>
+    </div>
+
+    <h2 class="script-heading">Us, so far</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <!-- BLANK IMAGE SLOTS 2 & 3: COUPLE ARCH PHOTOS -->
+    <div class="couple-arches-grid">
+      <div class="img-placeholder arch-photo-slot" data-slot="couple-photo-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="slot-title">Photo Slot 2</span>
+        <span class="slot-sub">Left Arch Photo</span>
+      </div>
+      <div class="img-placeholder arch-photo-slot" data-slot="couple-photo-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span class="slot-title">Photo Slot 3</span>
+        <span class="slot-sub">Right Arch Photo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6. THE CELEBRATIONS
+       ========================================================= -->
+  <section id="celebrations" class="reveal-on-scroll">
+    <h2 class="script-heading">The celebrations</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <div class="events-Wrapper">
+      <!-- Event 1: Mehendi -->
+      <div class="event-row reveal-on-scroll">
+        <span class="event-center-diamond"></span>
+        <div class="img-placeholder event-art-slot" data-slot="mehendi-illustration">
+          <span class="slot-title">Image Slot 4</span>
+          <span class="slot-sub">Mehendi Jhula Illustration</span>
+        </div>
+        <div class="event-details">
+          <p class="event-day">FRI, 12 FEB</p>
+          <p class="event-time">5:00 pm</p>
+          <h3 class="event-name-en">Mehendi</h3>
+          <p class="event-name-hi">मेहंदी</p>
+          <p class="event-venue-note">The garden terrace</p>
+          <a href="#rsvp" class="calendar-link">Add to calendar</a>
+        </div>
+      </div>
+
+      <!-- Event 2: Sangeet -->
+      <div class="event-row reveal-on-scroll">
+        <span class="event-center-diamond"></span>
+        <div class="event-details right-align">
+          <p class="event-day">SAT, 13 FEB</p>
+          <p class="event-time">7:30 pm</p>
+          <h3 class="event-name-en">Sangeet</h3>
+          <p class="event-name-hi">संगीत</p>
+          <p class="event-venue-note">The darbar hall</p>
+          <a href="#rsvp" class="calendar-link">Add to calendar</a>
+        </div>
+        <div class="img-placeholder event-art-slot" data-slot="sangeet-illustration">
+          <span class="slot-title">Image Slot 5</span>
+          <span class="slot-sub">Sangeet Dhol Illustration</span>
+        </div>
+      </div>
+
+      <!-- Event 3: Wedding -->
+      <div class="event-row reveal-on-scroll">
+        <span class="event-center-diamond"></span>
+        <div class="img-placeholder event-art-slot" data-slot="wedding-mandap-illustration">
+          <span class="slot-title">Image Slot 6</span>
+          <span class="slot-sub">Wedding Mandap Illustration</span>
+        </div>
+        <div class="event-details">
+          <p class="event-day">SUN, 14 FEB</p>
+          <p class="event-time">7:00 pm</p>
+          <h3 class="event-name-en">Wedding</h3>
+          <p class="event-name-hi">विवाह</p>
+          <p class="event-venue-note">By the lake, with dinner after the pheras</p>
+          <a href="#rsvp" class="calendar-link">Add to calendar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7. COUNTDOWN & LOCATION
+       ========================================================= -->
+  <section id="location" class="reveal-on-scroll">
+    <h2 class="script-heading">The celebration begins</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <div class="countdown-row">
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-days">95</div>
+        <div class="cd-label">Days</div>
+      </div>
+      <span class="cd-colon">:</span>
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-hours">20</div>
+        <div class="cd-label">Hours</div>
+      </div>
+      <span class="cd-colon">:</span>
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-mins">50</div>
+        <div class="cd-label">Minutes</div>
+      </div>
+      <span class="cd-colon">:</span>
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-secs">14</div>
+        <div class="cd-label">Seconds</div>
+      </div>
+    </div>
+
+    <p class="cd-subtext" style="margin-bottom: 52px;">
+      until the Mehendi, on Friday, 12 February
+    </p>
+
+    <h2 class="script-heading">Location</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <p class="location-city">UDAIPUR</p>
+    <p class="location-venue">The Haveli, Lake Pichola</p>
+    <p class="location-address">
+      Gangaur Ghat Road,<br>
+      Udaipur, Rajasthan
+    </p>
+
+    <!-- BLANK IMAGE SLOT 7: HAVELI LAKE PAINTING -->
+    <div class="img-placeholder haveli-banner-slot" data-slot="haveli-lake-painting">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <span class="slot-title">[ Image Slot 7: The Haveli Painting ]</span>
+      <span class="slot-sub">Full-width Lake Pichola Haveli &amp; Lotus Reflection Artwork</span>
+    </div>
+
+    <div class="map-card-container">
+      <svg class="map-roads-svg" viewBox="0 0 400 260" preserveAspectRatio="none">
+        <path d="M0,90 Q180,105 400,65 M130,0 L165,260 M265,0 L235,260 M0,195 Q210,170 400,225" stroke="#E2BE66" stroke-width="2" fill="none"/>
+      </svg>
+
+      <div style="position:relative; z-index:2; margin-bottom:12px;">
+        <svg width="34" height="44" viewBox="0 0 34 44" fill="none">
+          <path d="M17 0C7.6 0 0 7.6 0 17C0 28.5 17 44 17 44C17 44 34 28.5 34 17C34 7.6 26.4 0 17 0Z" fill="#E2BE66"/>
+          <circle cx="17" cy="16" r="6" fill="#420B13"/>
+        </svg>
+      </div>
+
+      <button class="show-map-pill" id="show-map-btn" type="button">Show the map</button>
+      <iframe class="map-iframe" id="google-map-iframe" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=Gangaur+Ghat+Road+Lake+Pichola+Udaipur&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    </div>
+
+    <a href="https://maps.google.com/?q=Gangaur+Ghat+Road,Lake+Pichola,Udaipur,Rajasthan" target="_blank" rel="noopener" class="google-maps-btn">
+      OPEN IN GOOGLE MAPS
+    </a>
+  </section>
+
+  <!-- =========================================================
+       8. GETTING THERE & DRESS CODE
+       ========================================================= -->
+  <section id="getting-there" class="reveal-on-scroll">
+    <h2 class="script-heading">Getting there</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <p class="travel-text">
+      Udaipur airport (UDR) is 40 minutes away. We'll meet every flight on the 12th.
+    </p>
+    <p class="travel-text">
+      Udaipur City railway station is 20 minutes away.
+    </p>
+
+    <p class="uppercase-track" style="margin: 34px 0 12px;">WHERE TO STAY</p>
+    <p class="stay-venue-bold">The Haveli, family wing</p>
+    <p class="travel-text" style="margin-bottom: 52px;">
+      Rooms are held for family from the 12th to the 15th.
+    </p>
+
+    <h2 class="script-heading">Dress code</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <p class="travel-text" style="margin-bottom: 10px;">
+      A colour for each function,<br>if you'd like a hint.
+    </p>
+
+    <!-- BLANK IMAGE SLOT 8: DRESS CODE ILLUSTRATION -->
+    <div class="img-placeholder dress-illustration-slot" data-slot="dress-code-illustration">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <span class="slot-title">[ Image Slot 8: Dress Code Lineup ]</span>
+      <span class="slot-sub">7 Guests in Traditional Sarees, Lehengas &amp; Sherwanis</span>
+    </div>
+
+    <div class="dress-table">
+      <div class="dress-row">
+        <div>
+          <div class="dress-event-title">Mehendi <span>मेहंदी</span></div>
+          <div class="dress-hint-sub">Greens and soft pinks</div>
+        </div>
+        <div class="swatches-group">
+          <span class="color-dot" style="background:#3A6037;"></span>
+          <span class="color-dot" style="background:#C28291;"></span>
+          <span class="color-dot" style="background:#E2BE66;"></span>
+        </div>
+      </div>
+
+      <div class="dress-row">
+        <div>
+          <div class="dress-event-title">Sangeet <span>संगीत</span></div>
+          <div class="dress-hint-sub">Jewel tones and sparkle</div>
+        </div>
+        <div class="swatches-group">
+          <span class="color-dot" style="background:#261C52;"></span>
+          <span class="color-dot" style="background:#7A1028;"></span>
+          <span class="color-dot" style="background:#D4AF37;"></span>
+        </div>
+      </div>
+
+      <div class="dress-row">
+        <div>
+          <div class="dress-event-title">Wedding <span>विवाह</span></div>
+          <div class="dress-hint-sub">Traditional Indian, in any colour you love</div>
+        </div>
+        <div class="swatches-group">
+          <span class="color-dot" style="background:#85142B;"></span>
+          <span class="color-dot" style="background:#BD6D22;"></span>
+          <span class="color-dot" style="background:#F7DF94;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       9. OUR FAMILIES & RSVP
+       ========================================================= -->
+  <section id="our-families" class="reveal-on-scroll">
+    <h2 class="script-heading">Our families</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <div class="family-group">
+      <p class="uppercase-track">WITH THE BLESSINGS OF</p>
+      <div class="family-names">
+        Late Smt. Kamla Devi &amp;<br>
+        Shri Ram Prasad Sharma
+      </div>
+      <div class="family-names" style="margin-top: 14px;">
+        Smt. Shanti &amp; Shri Om Prakash Mehra
+      </div>
+    </div>
+
+    <div class="family-group">
+      <p class="uppercase-track">EAGER TO SEE YOU</p>
+      <div class="family-names">
+        The Sharma family, Indore<br>
+        The Mehra family, Lucknow
+      </div>
+    </div>
+
+    <div class="family-group">
+      <p class="uppercase-track">WAITING TO WELCOME YOU</p>
+      <div class="family-names">
+        Rahul, Neha, Karan and Pooja
+      </div>
+    </div>
+
+    <div class="family-group" style="margin-bottom: 48px;">
+      <p class="uppercase-track">DON'T YOU DARE MISS IT</p>
+      <p class="kids-callout">
+        Aarav and Myra say: you<br>
+        must come to the wedding!
+      </p>
+    </div>
+
+    <h2 class="script-heading">Our song</h2>
+    <div class="floral-divider">
+      <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>
+    </div>
+
+    <div class="song-player-box">
+      <button class="song-play-circle" id="song-toggle-btn" type="button">❚❚</button>
+      <div>
+        <div style="font-weight: 600; font-size: 1.15rem; color: var(--gold-bright);">Tanya &amp; Vikram's Theme</div>
+        <div style="font-style: italic; font-size: 0.95rem; color: var(--gold-primary);">Royal Udaipur Instrumental</div>
+      </div>
+    </div>
+
+    <div class="rsvp-box" id="rsvp">
+      <h3 style="font-family: var(--font-script); font-size: 2.5rem; color: var(--gold-bright); text-align: center; margin-bottom: 14px;">RSVP</h3>
+      <form id="whatsapp-rsvp-form">
+        <input type="text" id="guest-name" class="rsvp-input" placeholder="Your Full Name" required />
+        <select id="guest-count" class="rsvp-select">
+          <option value="1 Guest">Attending — 1 Guest</option>
+          <option value="2 Guests" selected>Attending — 2 Guests</option>
+          <option value="Family (3-4 Guests)">Attending — Family (3–4 Guests)</option>
+          <option value="Warm Wishes Only">Unable to attend, sending warm wishes</option>
+        </select>
+        <input type="text" id="guest-note" class="rsvp-input" placeholder="Flight / Arrival details or message (optional)" />
+        <button type="submit" class="rsvp-submit">Confirm via WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Floating Language & Audio Controls -->
+  <div class="floating-controls">
+    <button class="lang-pill" id="lang-toggle" type="button" title="Switch Language">हिं</button>
+    <button class="audio-fab" id="audio-fab" type="button" title="Play / Pause Music">❚❚</button>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // =========================================================
+    // 1. MASTER REQUESTANIMATIONFRAME SCROLL-DRIVEN ENGINE
+    //    Scrubs Opening Video / 3 Starting Frames + Section Reveals
+    // =========================================================
+    const seqTrack = document.getElementById('scroll-sequence-track');
+    const scrollVideo = document.getElementById('scroll-video');
+    const frame1 = document.getElementById('seq-frame-1');
+    const frame2 = document.getElementById('seq-frame-2');
+    const frame3 = document.getElementById('seq-frame-3');
+    const progressFill = document.getElementById('seq-progress-fill');
+    const stepLabel = document.getElementById('seq-step-label');
+
+    let ticking = false;
+
+    function updateScrollEngine() {
+      const scrollY = window.scrollY;
+      const trackHeight = seqTrack.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, scrollY / (trackHeight || 1)));
+
+      // Update progress bar
+      progressFill.style.width = `${(progress * 100).toFixed(1)}%`;
+
+      // Scrub video if video file is provided
+      if (scrollVideo && scrollVideo.readyState >= 2 && scrollVideo.duration) {
+        scrollVideo.currentTime = progress * scrollVideo.duration;
+      }
+
+      // Cross-fade the 3 starting frames based on scroll progress
+      if (progress < 0.35) {
+        // Frame 1: Royal Haveli Doors & Diyas
+        frame1.style.opacity = '1';
+        frame1.style.transform = `scale(${1 + progress * 0.12})`;
+        frame2.style.opacity = '0';
+        frame3.style.opacity = '0';
+        stepLabel.textContent = 'Scroll down to open the royal doors...';
+      } else if (progress >= 0.35 && progress < 0.68) {
+        // Frame 2: Lotus, Peacock & Flying Doves Courtyard
+        const localP = (progress - 0.35) / 0.33;
+        frame1.style.opacity = '0';
+        frame2.style.opacity = '1';
+        frame2.style.transform = `scale(${1 + localP * 0.08})`;
+        frame3.style.opacity = '0';
+        stepLabel.textContent = 'Entering the royal courtyard...';
+      } else {
+        // Frame 3: White Marble Lord Ganesha & "श्री गणेशाय नमः"
+        const localP = (progress - 0.68) / 0.32;
+        frame1.style.opacity = '0';
+        frame2.style.opacity = '0';
+        frame3.style.opacity = '1';
+        frame3.style.transform = `scale(${1 + localP * 0.06})`;
+        stepLabel.textContent = '॥ श्री गणेशाय नमः ॥ — Keep scrolling';
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollEngine);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // IntersectionObserver for smooth scroll-driven section reveals
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // =========================================================
+    // 2. GOLD FOIL SCRATCH-TO-REVEAL DATE CARDS
+    // =========================================================
+    function initScratchCards() {
+      const canvases = document.querySelectorAll('.scratch-canvas');
+      canvases.forEach((canvas) => {
+        const ctx = canvas.getContext('2d');
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        // Metallic Gold Foil Gradient for Maroon/Gold Theme
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0, '#E2BE66');
+        grad.addColorStop(0.5, '#B88E35');
+        grad.addColorStop(1, '#F7DF94');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#420B13';
+        ctx.font = '16px Georgia';
+        ctx.textAlign = 'center';
+        ctx.fillText('✦', canvas.width / 2, canvas.height / 2 + 5);
+
+        let isDrawing = false;
+
+        function scratch(x, y) {
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.beginPath();
+          ctx.arc(x, y, 22, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+          isDrawing = true;
+          const r = canvas.getBoundingClientRect();
+          scratch(e.clientX - r.left, e.clientY - r.top);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+          if (!isDrawing) return;
+          const r = canvas.getBoundingClientRect();
+          scratch(e.clientX - r.left, e.clientY - r.top);
+        });
+
+        window.addEventListener('mouseup', () => { isDrawing = false; });
+
+        canvas.addEventListener('touchstart', (e) => {
+          isDrawing = true;
+          const r = canvas.getBoundingClientRect();
+          const t = e.touches[0];
+          scratch(t.clientX - r.left, t.clientY - r.top);
+        }, { passive: true });
+
+        canvas.addEventListener('touchmove', (e) => {
+          if (!isDrawing) return;
+          const r = canvas.getBoundingClientRect();
+          const t = e.touches[0];
+          scratch(t.clientX - r.left, t.clientY - r.top);
+        }, { passive: true });
+
+        canvas.addEventListener('touchend', () => { isDrawing = false; });
+
+        canvas.addEventListener('click', () => {
+          canvas.style.opacity = '0';
+          setTimeout(() => canvas.remove(), 500);
+        });
+      });
+    }
+
+    window.addEventListener('load', () => {
+      initScratchCards();
+      updateScrollEngine();
+    });
+
+    // =========================================================
+    // 3. LIVE COUNTDOWN TIMER
+    // =========================================================
+    const targetDate = new Date('2027-02-12T17:00:00+05:30').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // =========================================================
+    // 4. MAP, AUDIO & LANGUAGE CONTROLS
+    // =========================================================
+    document.getElementById('show-map-btn').addEventListener('click', function() {
+      document.getElementById('google-map-iframe').style.display = 'block';
+      this.style.display = 'none';
+    });
+
+    let isPlaying = true;
+    const audioFab = document.getElementById('audio-fab');
+    const songBtn = document.getElementById('song-toggle-btn');
+    const bgMusic = document.getElementById('bg-music');
+
+    function toggleAudio() {
+      isPlaying = !isPlaying;
+      const icon = isPlaying ? '❚❚' : '▶';
+      audioFab.textContent = icon;
+      songBtn.textContent = icon;
+      if (bgMusic.querySelector('source').getAttribute('src')) {
+        isPlaying ? bgMusic.play() : bgMusic.pause();
+      }
+    }
+    audioFab.addEventListener('click', toggleAudio);
+    songBtn.addEventListener('click', toggleAudio);
+
+    let isHindi = false;
+    document.getElementById('lang-toggle').addEventListener('click', function() {
+      isHindi = !isHindi;
+      this.textContent = isHindi ? 'En' : 'हिं';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = isHindi ? el.getAttribute('data-hi') : el.getAttribute('data-en');
+      });
+    });
+
+    // =========================================================
+    // 5. WHATSAPP RSVP INTEGRATION
+    // =========================================================
+    document.getElementById('whatsapp-rsvp-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('guest-name').value.trim();
+      const count = document.getElementById('guest-count').value;
+      const note = document.getElementById('guest-note').value.trim();
+
+      const msg = `*Royal Wedding RSVP — Tanya & Vikram*%0A` +
+                  `----------------------------------%0A` +
+                  `*Name:* ${encodeURIComponent(name)}%0A` +
+                  `*Status:* ${encodeURIComponent(count)}%0A` +
+                  (note ? `*Note:* ${encodeURIComponent(note)}%0A` : '') +
+                  `*Venue:* The Haveli, Lake Pichola, Udaipur (12–14 Feb 2027)`;
+
+      window.open(`https://wa.me/919824160664?text=${msg}`, '_blank');
+    });
+  </script>
+</body>
+</html>
