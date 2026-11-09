@@ -1134,7 +1134,96 @@
       cursor: pointer;  
       box-shadow: 0 3px 10px rgba(0,0,0,0.5);  
     }  
-  
+  /* ================================
+   IMAGE FIX - ALL SECTIONS
+================================ */
+
+/* 1. HERO COUPLE IMAGE */
+.hero-img-slot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: hidden;
+}
+
+.hero-couple-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* 2. GANESH JI IMAGE */
+.ganesh-image {
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+}
+
+.ganesh-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 3. COUPLE ARCH PHOTOS */
+.arch-photo-slot {
+    height: 215px;
+    overflow: hidden;
+    border-radius: 110px 110px 12px 12px;
+}
+
+.arch-photo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 4. EVENT IMAGES */
+.event-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+/* 5. VENUE IMAGE */
+.haveli-banner-slot {
+    width: calc(100% + 48px);
+    height: 270px;
+    margin-left: -24px;
+    overflow: hidden;
+}
+
+.venue-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 6. DRESS CODE IMAGE */
+.dress-illustration-slot {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.dress-code-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
     .audio-fab {  
       width: 54px;  
       height: 54px;  
