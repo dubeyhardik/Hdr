@@ -1151,6 +1151,109 @@
     object-fit: contain;
     display: block;
 }
+    /* =================================
+   HERO SECTION TEXT RESPONSIVE FIX
+================================= */
+
+.hero-section {
+    min-height: 100svh;
+    height: 100svh;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-img-slot {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-couple-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+}
+
+/* Text positioning */
+.hero-content {
+    position: absolute;
+    z-index: 4;
+
+    top: auto;
+    bottom: 115px;
+
+    left: 0;
+    width: 100%;
+
+    padding: 25px 15px 15px;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(43, 5, 9, 0.65),
+        rgba(43, 5, 9, 0.95)
+    );
+    
+    text-align: center;
+}
+
+/* Welcome text */
+.hero-welcome {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+}
+
+/* Couple names */
+.hero-names {
+    font-size: clamp(3rem, 11vw, 4rem);
+    line-height: 0.95;
+    margin: 0;
+}
+
+/* Ampersand */
+.hero-amp {
+    font-size: 1.8rem;
+    margin: 5px 0;
+}
+
+/* City */
+.hero-city {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    letter-spacing: 0.3em;
+}
+
+/* Scroll Down */
+.hero-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    padding: 25px 20px 25px;
+    background: linear-gradient(
+        transparent,
+        #420B13
+    );
+}
+
+.scroll-down-text {
+    font-size: 2rem;
+}
+
+/* Small mobile screens */
+@media (max-width: 380px) {
+    .hero-content {
+        bottom: 105px;
+        padding: 20px 12px;
+    }
+
+    .hero-names {
+        font-size: 2.8rem;
+    }
+}
     .audio-fab {  
       width: 54px;  
       height: 54px;  
