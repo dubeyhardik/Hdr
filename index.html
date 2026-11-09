@@ -289,17 +289,26 @@
       background: linear-gradient(180deg, #2B0509 0%, #4A0D16 50%, var(--bg-maroon-main) 100%);  
     }  
   
-    .hero-img-slot {  
-      position: absolute;  
-      inset: 0;  
-      z-index: 1;  
-      border: none;  
-      border-radius: 0;  
-      background: radial-gradient(circle at 50% 45%, rgba(92, 17, 28, 0.65), rgba(36, 4, 8, 0.92));  
-      justify-content: flex-end;  
-      padding-bottom: 185px;  
-    }  
-  
+    
+  .hero-img-slot {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 380px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 160px 160px 15px 15px;
+    border: 2px solid #E2BE66;
+    box-shadow: 0 0 25px rgba(226, 190, 102, 0.25);
+}
+
+.hero-couple-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
     .hero-img-slot .slot-badge {  
       border: 1px dashed var(--gold-primary);  
       background: rgba(36, 4, 8, 0.7);  
@@ -476,21 +485,20 @@
       box-shadow: inset 0 0 0 6px var(--bg-maroon-main), inset 0 0 0 7.5px var(--gold-border), 0 12px 35px rgba(0,0,0,0.5);  
     }  
   
-    .monogram-circle {  
-      width: 86px;  
-      height: 86px;  
-      border-radius: 50%;  
-      border: 1.5px solid var(--gold-bright);  
-      box-shadow: inset 0 0 0 3px var(--bg-maroon-main), inset 0 0 0 4px var(--gold-primary);  
-      display: flex;  
-      align-items: center;  
-      justify-content: center;  
-      margin: 0 auto 18px;  
-      font-family: var(--font-serif);  
-      font-size: 2.5rem;  
-      color: var(--gold-bright);  
-      letter-spacing: -2px;  
-    }  
+    .ganesh-image {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ganesh-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
   
     .monogram-circle span.v-drop {  
       transform: translateY(6px);  
@@ -599,18 +607,27 @@
       font-weight: 500;  
     }  
   
-    .couple-arches-grid {  
-      display: grid;  
-      grid-template-columns: 1fr 1fr;  
-      gap: 16px;  
-      margin-top: 16px;  
-    }  
-  
-    .arch-photo-slot {  
-      height: 215px;  
-      border-radius: 110px 110px 12px 12px;  
-      border: 2px solid var(--gold-primary);  
-    }  
+    .couple-arches-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.arch-photo-slot {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border: 2px solid #E2BE66;
+    border-radius: 150px 150px 10px 10px;
+}
+
+.arch-photo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
   
     /* 6. THE CELEBRATIONS */  
     .events-Wrapper {  
@@ -777,15 +794,23 @@
       margin-bottom: 28px;  
     }  
   
-    .haveli-banner-slot {  
-      width: calc(100% + 48px);  
-      margin-left: -24px;  
-      height: 270px;  
-      border-radius: 0;  
-      border-left: none;  
-      border-right: none;  
-      margin-bottom: 28px;  
-    }  
+    .haveli-banner-slot {
+    width: 100%;
+    max-width: 900px;
+    height: 350px;
+    margin: 30px auto;
+    overflow: hidden;
+    border: 2px solid #E2BE66;
+    border-radius: 15px;
+}
+
+.venue-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
   
     .map-card-container {  
       width: 100%;  
@@ -861,11 +886,21 @@
       margin: 0 auto 22px;  
     }  
   
-    .dress-illustration-slot {  
-      width: 100%;  
-      height: 220px;  
-      margin: 22px 0 26px;  
-    }  
+.dress-illustration-slot {
+    width: 100%;
+    max-width: 600px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+.dress-code-img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
   
     .dress-table {  
       text-align: left;  
@@ -1126,12 +1161,12 @@
     </svg>
 
     <!-- BLANK IMAGE SLOT 1: HERO COUPLE -->  
-    <div class="img-placeholder hero-img-slot" data-slot="hero-couple-surat">  
-      <div class="slot-badge">  
-        <span class="slot-title">[ Image Slot 1: Hero Couple &amp; Arch ]</span>  
-        <span class="slot-sub">Swati &amp; Shubham couple photo yahan aayega</span>  
-      </div>  
-    </div>  
+    <!-- HERO COUPLE IMAGE -->
+<div class="hero-img-slot">
+    <img src="couple.png"
+         alt="Swati and Shubham Wedding Couple"
+         class="hero-couple-img">
+</div>
 
     <div class="hero-content reveal-on-scroll">  
       <p class="hero-welcome" data-en="Welcome to the wedding of" data-hi="हमारे विवाह उत्सव में आपका स्वागत है">Welcome to the wedding of</p>  
@@ -1202,10 +1237,14 @@
        4. FORMAL ARCH INVITATION CARD  
        ========================================================= -->
   <section class="arch-card-section reveal-on-scroll">  
-    <div class="royal-arch-frame">  
-      <div class="monogram-circle">  
-        <span>S</span><span class="v-drop">S</span>  
-      </div>
+
+      <div class="royal-arch-frame">
+
+    <div class="ganesh-image">
+        <img src="ganeshji.png" alt="Shree Ganesh Ji">
+    </div>
+
+</div>
 
       <p class="ganesh-mantra">॥ श्री गणेशाय नमः ॥</p>  
       <div class="floral-divider" style="margin-bottom: 18px;">  
@@ -1254,7 +1293,7 @@
     <div class="blessings-card">  
       <p class="uppercase-track">WITH BLESSINGS FROM</p>  
       <ul class="blessings-list">  
-        <li>Laxmikant Dubey</li>  
+        <li>Shri Laxmikant Dubey</li>  
         <li>Shri Shrikant Dubey</li>  
         <li>Shri Ramakant Dubey</li>  
       </ul>  
@@ -1273,17 +1312,18 @@
     </div>  
 
     <!-- BLANK IMAGE SLOTS 2 & 3: COUPLE ARCH PHOTOS -->  
-    <div class="couple-arches-grid">  
-      <div class="img-placeholder arch-photo-slot" data-slot="couple-photo-1">  
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>  
-        <span class="slot-title">Photo Slot 2</span>  
-        <span class="slot-sub">Left Arch Photo</span>  
-      </div>  
-      <div class="img-placeholder arch-photo-slot" data-slot="couple-photo-2">  
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>  
-        <span class="slot-title">Photo Slot 3</span>  
-        <span class="slot-sub">Right Arch Photo</span>  
-      </div>  
+    <div class="couple-arches-grid">
+
+    <!-- LEFT ARCH PHOTO -->
+    <div class="arch-photo-slot">
+        <img src="couple1.png" alt="Swati and Shubham Photo 1">
+    </div>
+
+    <!-- RIGHT ARCH PHOTO -->
+    <div class="arch-photo-slot">
+        <img src="couple2.png" alt="Swati and Shubham Photo 2">
+    </div>
+
     </div>
   </section>
 
@@ -1312,7 +1352,7 @@
           <p class="event-time">Mehendi</p>  
           <h3 class="event-name-en">Mehendi</h3>  
           <p class="event-name-hi">मेहंदी</p>  
-          <p class="event-venue-note">Jamna Baa Party Plot</p>  
+          <p class="event-venue-note"> At Family Residence </p>  
           <a href="#rsvp" class="calendar-link">RSVP</a>  
         </div>  
       </div>  
@@ -1326,7 +1366,7 @@
           <p class="event-time">Sangeet</p>  
           <h3 class="event-name-en">Sangeet</h3>  
           <p class="event-name-hi">संगीत</p>  
-          <p class="event-venue-note">Jamna Baa Party Plot</p>  
+          <p class="event-venue-note"> At Family Residence </p>  
           <a href="#rsvp" class="calendar-link">RSVP</a>  
         </div>  
 
@@ -1403,12 +1443,13 @@
     </p>  
 
     <!-- BLANK IMAGE SLOT 7: VENUE BANNER -->  
-    <div class="img-placeholder haveli-banner-slot" data-slot="venue-banner-artwork">  
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>  
-      <span class="slot-title">[ Image Slot 7: Venue Artwork ]</span>  
-      <span class="slot-sub">Jamna Baa Party Plot, Vesu, Surat</span>  
-    </div>  
-
+    
+<div class="haveli-banner-slot">
+    <img src="venue.png"
+         alt="Jamna Baa Party Plot, Vesu, Surat"
+         class="venue-image">
+</div>
+    
     <div class="map-card-container">  
       <svg class="map-roads-svg" viewBox="0 0 400 260" preserveAspectRatio="none">  
         <path d="M0,90 Q180,105 400,65 M130,0 L165,260 M265,0 L235,260 M0,195 Q210,170 400,225" stroke="#E2BE66" stroke-width="2" fill="none"/>  
@@ -1444,11 +1485,11 @@
     </p>  
 
     <!-- BLANK IMAGE SLOT 8: DRESS CODE ILLUSTRATION -->  
-    <div class="img-placeholder dress-illustration-slot" data-slot="dress-code-illustration">  
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>  
-      <span class="slot-title">[ Image Slot 8: Dress Code Lineup ]</span>  
-      <span class="slot-sub">Guests in Traditional Sarees, Lehengas &amp; Sherwanis</span>  
-    </div>  
+<div class="dress-illustration-slot">
+    <img src="dresscode.png"
+         alt="Traditional Wedding Dress Code"
+         class="dress-code-img">
+</div>
 
     <div class="dress-table">  
       <div class="dress-row">  
@@ -1518,7 +1559,7 @@
     <div class="family-group" style="margin-bottom: 42px;">  
       <p class="uppercase-track">EAGER TO WELCOME YOU</p>  
       <div class="family-names">  
-        The Dubey &amp; Tiwari Families  
+        THE DUBEY FAMILY
       </div>  
     </div>  
 
@@ -1558,7 +1599,7 @@
     <div class="floral-divider" style="margin: 0 auto 14px;">  
       <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>  
     </div>
-    <p class="footer-credit">Designed and coded by Hardik Ramakant Dubey</p>
+    <p class="footer-credit">DESIGNED AND CODED BY HARDIK RAMAKANT DUBEY </p>
   </footer>
 
   <!-- Floating Language & Audio Controls -->
