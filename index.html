@@ -494,112 +494,40 @@
       padding: 30px 18px;  
     }  
   
-    .royal-arch-frame {  
-      position: relative;  
-      padding: 75px 22px 48px;  
-      border: 2px solid var(--gold-primary);  
-      border-radius: 220px 220px 16px 16px;  
-      background: linear-gradient(180deg, rgba(90, 17, 28, 0.7) 0%, rgba(43, 5, 9, 0.85) 100%);  
-      box-shadow: inset 0 0 0 6px var(--bg-maroon-main), inset 0 0 0 7.5px var(--gold-border), 0 12px 35px rgba(0,0,0,0.5);  
-    }  
-  
-    .monogram-circle {  
-      width: 86px;  
-      height: 86px;  
-      border-radius: 50%;  
-      border: 1.5px solid var(--gold-bright);  
-      box-shadow: inset 0 0 0 3px var(--bg-maroon-main), inset 0 0 0 4px var(--gold-primary);  
-      display: flex;  
-      align-items: center;  
-      justify-content: center;  
-      margin: 0 auto 18px;  
-      font-family: var(--font-serif);  
-      font-size: 2.5rem;  
-      color: var(--gold-bright);  
-      letter-spacing: -2px;  
-    }  
-  
-    .monogram-circle span.v-drop {  
-      transform: translateY(6px);  
-      display: inline-block;  
-    }  
-  
-    .ganesh-mantra {  
-      font-family: var(--font-hindi);  
-      font-size: 1.15rem;  
-      color: var(--gold-bright);  
-      letter-spacing: 0.06em;  
-      margin-bottom: 6px;  
-    }  
-  
-    .invite-intro {  
-      font-style: italic;  
-      font-size: 1.22rem;  
-      color: var(--gold-primary);  
-      line-height: 1.55;  
-      margin-bottom: 18px;  
-    }  
-  
-    .bride-groom-script {  
-      font-family: var(--font-script);  
-      font-size: 3.25rem;  
-      color: var(--gold-bright);  
-      font-weight: 400;  
-      margin: 8px 0 12px;  
-      line-height: 1.1;  
-      text-shadow: 0 2px 12px rgba(0,0,0,0.6);  
-    }  
-  
-    .parents-block {  
-      font-size: 0.88rem;  
-      letter-spacing: 0.16em;  
-      text-transform: uppercase;  
-      line-height: 1.85;  
-      color: var(--gold-primary);  
-      margin: 8px 0;  
-    }  
-  
-    .parents-block .relation {  
-      font-size: 0.72rem;  
-      color: var(--gold-muted);  
-      letter-spacing: 0.24em;  
-    }  
-  
-    .with-script {  
-      font-family: var(--font-script);  
-      font-size: 2.2rem;  
-      color: var(--gold-bright);  
-      margin: 10px 0 4px;  
-    }  
-  
-    .arch-footer-date {  
-      margin-top: 28px;  
-      font-size: 1.22rem;  
-      color: var(--gold-bright);  
-    }  
-  
-    .arch-footer-venue {  
-      font-style: italic;  
-      font-size: 1.12rem;  
-      color: var(--gold-primary);  
-      margin-top: 4px;  
-    }  
-  
-    /* 5. BLESSINGS & TIMELINE STYLES */  
-    .blessings-quote {  
-      font-style: italic;  
-      font-size: 1.32rem;  
-      line-height: 1.6;  
-      color: var(--gold-bright);  
-      max-width: 340px;  
-      margin: 0 auto 32px;  
-      padding: 18px 20px;  
-      border-top: 1px solid var(--gold-border);  
-      border-bottom: 1px solid var(--gold-border);  
-      background: rgba(84, 16, 26, 0.45);  
-      border-radius: 10px;  
-    }  
+.royal-arch-frame {
+    position: relative;
+    padding: 65px 22px 45px;
+    border: 2px solid var(--gold-primary);
+    border-radius: 220px 220px 18px 18px;
 
+    background: linear-gradient(
+        180deg,
+        rgba(90, 17, 28, 0.7) 0%,
+        rgba(43, 5, 9, 0.9) 100%
+    );
+
+    box-shadow:
+        inset 0 0 0 6px var(--bg-maroon-main),
+        inset 0 0 0 7.5px var(--gold-border),
+        0 12px 35px rgba(0,0,0,0.5);
+
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.royal-arch-frame .ganesh-mantra {
+    margin-top: 12px;
+}
+
+.royal-arch-frame .bride-groom-script {
+    font-size: clamp(2.6rem, 10vw, 3.25rem);
+}
+
+.royal-arch-frame .invite-intro {
+    margin-top: 12px;
+}
     .blessings-card {  
       background: linear-gradient(160deg, rgba(84, 16, 26, 0.75) 0%, rgba(43, 5, 9, 0.85) 100%);  
       border: 1.5px solid var(--gold-border);  
@@ -1388,47 +1316,74 @@
   <!-- =========================================================  
        4. FORMAL ARCH INVITATION CARD  
        ========================================================= -->
-  <section class="arch-card-section reveal-on-scroll">  
+  <!-- 4. COMPLETE ROYAL ARCH INVITATION CARD -->
 
-      <div class="royal-arch-frame">
+<section class="arch-card-section reveal-on-scroll">
 
-    <div class="ganesh-image">
-        <img src="ganeshji.png" alt="Shree Ganesh Ji">
+    <div class="royal-arch-frame">
+
+        <!-- Ganesh Ji -->
+        <div class="ganesh-image">
+            <img src="ganeshji.png" alt="Shree Ganesh Ji">
+        </div>
+
+        <p class="ganesh-mantra">
+            ॥ श्री गणेशाय नमः ॥
+        </p>
+
+        <div class="floral-divider" style="margin-bottom:18px;">
+            <svg width="210" height="28" viewBox="0 0 210 28">
+                <use href="#royal-floral-divider"/>
+            </svg>
+        </div>
+
+        <!-- Invitation Text -->
+        <p class="invite-intro">
+            With the blessings of our elders,<br>
+            you are cordially invited to the wedding of
+        </p>
+
+        <!-- Bride -->
+        <h2 class="bride-groom-script">
+            Swati Dubey
+        </h2>
+
+        <div class="parents-block">
+            <div class="relation">DAUGHTER OF</div>
+            <div>SHRI SHREEKANT DUBEY</div>
+        </div>
+
+        <!-- With -->
+        <div class="with-script">with</div>
+
+        <!-- Groom -->
+        <h2 class="bride-groom-script">
+            Shubham Tiwari
+        </h2>
+
+        <div class="parents-block">
+            <div class="relation">SON OF</div>
+            <div>SHRI SATYAPRAKSH TIWARI</div>
+        </div>
+
+        <!-- Wedding Details -->
+        <div class="floral-divider" style="margin-top:20px;">
+            <svg width="210" height="28" viewBox="0 0 210 28">
+                <use href="#royal-floral-divider"/>
+            </svg>
+        </div>
+
+        <p class="arch-footer-date">
+            Wednesday, 9 December 2026
+        </p>
+
+        <p class="arch-footer-venue">
+            Jamna Baa Party Plot, Vesu, Surat
+        </p>
+
     </div>
 
-</div>
-
-      <p class="ganesh-mantra">॥ श्री गणेशाय नमः ॥</p>  
-      <div class="floral-divider" style="margin-bottom: 18px;">  
-        <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>  
-      </div>  
-
-      <p class="invite-intro">  
-        With the blessings of our elders,<br>  
-        you are cordially invited to the wedding of  
-      </p>  
-
-      <h2 class="bride-groom-script">Swati Dubey</h2>  
-
-      <div class="parents-block">  
-        <div class="relation">DAUGHTER OF</div>  
-        <div>SHRI SHREEKANT DUBEY</div>  
-      </div>  
-
-      <div class="with-script">with</div>  
-
-      <h2 class="bride-groom-script">Shubham Tiwari</h2>  
-
-      <div class="parents-block">  
-        <div class="relation">SON OF</div>  
-        <div>SHRI SATYAPRAKSH TIWARI</div>  
-      </div>  
-
-      <p class="arch-footer-date">Wednesday, 9 December 2026</p>  
-      <p class="arch-footer-venue">Jamna Baa Party Plot, Vesu, Surat</p>  
-    </div>
-  </section>
-
+</section>
   <!-- =========================================================  
        5. BLESSINGS SECTION (REPLACED OUR STORY)  
        ========================================================= -->
