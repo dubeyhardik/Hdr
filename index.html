@@ -1988,18 +1988,7 @@
     const songBtn = document.getElementById('song-toggle-btn');  
     const bgMusic = document.getElementById('bg-music');  
   
-    function toggleAudio() {  
-      isPlaying = !isPlaying;  
-      const icon = isPlaying ? '❚❚' : '▶';  
-      audioFab.textContent = icon;  
-      songBtn.textContent = icon;  
-      if (bgMusic.querySelector('source').getAttribute('src')) {  
-        isPlaying ? bgMusic.play() : bgMusic.pause();  
-      }  
-    }  
-    audioFab.addEventListener('click', toggleAudio);  
-    songBtn.addEventListener('click', toggleAudio);  
-  
+    
     let isHindi = false;  
     document.getElementById('lang-toggle').addEventListener('click', function() {  
       isHindi = !isHindi;  
