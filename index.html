@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">  
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-  <style>  
+                                  
+        <style>  
     :root {  
       /* Royal Maroon & Antique Gold Palette */  
       --bg-maroon-deep: #2B0509;  
@@ -67,11 +68,10 @@
   
     /* =========================================================  
        1. SCROLL-DRIVEN STARTING SEQUENCE (320vh STICKY TRACK)  
-       (Doors -> Peacock & Lotus Courtyard -> Ganpati Bappa)  
        ========================================================= */  
     .scroll-sequence-track {  
       position: relative;  
-      height: 320vh; /* Scroll length that drives the opening frames */  
+      height: 320vh;  
       width: 100%;  
     }  
   
@@ -89,7 +89,6 @@
       border-bottom: 2px solid var(--gold-border);  
     }  
   
-    /* Direct Video Scrubber (Put your video file name in src) */  
     .scroll-scrub-video {  
       position: absolute;  
       inset: 0;  
@@ -100,7 +99,6 @@
       pointer-events: none;  
     }  
   
-    /* 3-Frame Fallback / Preview Layers (Visible if video src is blank) */  
     .seq-frame-layer {  
       position: absolute;  
       inset: 0;  
@@ -116,18 +114,15 @@
       z-index: 1;  
     }  
   
-    /* Frame 1: Royal Doors & Diyas (0% - 35% scroll) */  
     .seq-frame-1 {  
       background: radial-gradient(circle at 50% 48%, rgba(247, 201, 102, 0.28) 0%, #3E0B12 52%, #1E0306 100%);  
     }  
   
-    /* Frame 2: Lotus, Peacock & Flying Doves Arch (35% - 68% scroll) */  
     .seq-frame-2 {  
       background: radial-gradient(circle at 50% 45%, #691724 0%, #3B0910 70%, #1F0407 100%);  
       opacity: 0;  
     }  
   
-    /* Frame 3: Marble Lord Ganesha & Golden "श्री गणेशाय नमः" (68% - 100% scroll) */  
     .seq-frame-3 {  
       background: radial-gradient(circle at 50% 40%, rgba(247, 223, 148, 0.22) 0%, #4A0D16 65%, #240408 100%);  
       opacity: 0;  
@@ -152,7 +147,6 @@
       margin-bottom: 14px;  
     }  
   
-    /* Top Overlay Text on Opening Sequence */  
     .seq-top-bar {  
       position: relative;  
       z-index: 5;  
@@ -177,7 +171,6 @@
       text-shadow: 0 2px 8px rgba(0,0,0,0.9);  
     }  
   
-    /* Bottom Scroll Progress Pill inside Opening Sequence */  
     .seq-bottom-bar {  
       position: relative;  
       z-index: 5;  
@@ -229,7 +222,7 @@
       transform: translateY(0) scale(1);  
     }  
   
-    /* Blank Image Placeholder Styling (Maroon & Gold) */  
+    /* Blank Image Placeholder Styling */  
     .img-placeholder {  
       background: linear-gradient(145deg, rgba(84, 16, 26, 0.75), rgba(43, 5, 9, 0.85));  
       border: 1.5px dashed var(--gold-primary);  
@@ -305,34 +298,16 @@
       position: relative;  
     }  
   
-    /* 2. HERO COUPLE SECTION */  
+    /* =========================================================  
+       2. HERO COUPLE SECTION (CLEAN & SEAMLESS — NO IMAGE CUT)  
+       ========================================================= */  
     .hero-section {  
-      padding: 0;  
-      min-height: 92vh;  
-      display: flex;  
-      flex-direction: column;  
-      justify-content: space-between;  
       position: relative;  
-      background: linear-gradient(180deg, #2B0509 0%, #4A0D16 50%, var(--bg-maroon-main) 100%);  
-    }  
-  
-    .hero-img-slot {  
-      position: absolute;  
-      inset: 0;  
-      z-index: 1;  
-      border: none;  
-      border-radius: 0;  
-      background: radial-gradient(circle at 50% 45%, rgba(92, 17, 28, 0.65), rgba(36, 4, 8, 0.92));  
-      justify-content: flex-end;  
-      padding-bottom: 185px;  
-    }  
-  
-    .hero-img-slot .slot-badge {  
-      border: 1px dashed var(--gold-primary);  
-      background: rgba(36, 4, 8, 0.7);  
-      padding: 14px 20px;  
-      border-radius: 12px;  
-      backdrop-filter: blur(5px);  
+      height: 100svh;  
+      min-height: 640px;  
+      padding: 0;  
+      overflow: hidden;  
+      background-color: var(--bg-maroon-main);  
     }  
   
     .hero-arch-svg {  
@@ -345,70 +320,112 @@
       pointer-events: none;  
     }  
   
-.hero-content {
-  position: absolute;
-  z-index: 4;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 90px 15px 100px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(43, 5, 9, 0.85) 45%,
-    #420B13 100%
-  );
-  text-align: center;
-}
+    /* Couple Image stops 90px above bottom so it never leaks into Scroll Down */  
+    .hero-img-slot {  
+      position: absolute;  
+      top: 0;  
+      left: 0;  
+      right: 0;  
+      bottom: 90px;  
+      z-index: 1;  
+      overflow: hidden;  
+      background: transparent;  
+      border: none;  
+      padding: 0;  
+    }  
+  
+    .hero-couple-img {  
+      width: 100%;  
+      height: 100%;  
+      object-fit: cover;  
+      object-position: center 20%;  
+      display: block;  
+    }  
+  
+    /* Text block blends smoothly from transparent into solid #420B13 right at 90px */  
+    .hero-content {  
+      position: absolute;  
+      left: 0;  
+      right: 0;  
+      bottom: 88px;  
+      z-index: 4;  
+      padding: 85px 16px 14px;  
+      background: linear-gradient(  
+        to bottom,  
+        rgba(66, 11, 19, 0) 0%,  
+        rgba(43, 5, 9, 0.72) 48%,  
+        #420B13 98%  
+      );  
+      text-align: center;  
+    }  
   
     .hero-welcome {  
-      font-size: 1.1rem;  
-      letter-spacing: 0.05em;  
-      margin-bottom: 10px;  
+      font-size: 1rem;  
+      letter-spacing: 0.08em;  
+      margin-bottom: 6px;  
       color: var(--gold-primary);  
     }  
   
     .hero-names {  
       font-family: var(--font-script);  
-      font-size: 3.8rem;  
-      line-height: 1.05;  
+      font-size: clamp(2.9rem, 10.5vw, 3.8rem);  
+      line-height: 0.98;  
+      margin: 0;  
       color: var(--gold-bright);  
       text-shadow: 0 3px 16px rgba(0,0,0,0.7);  
     }  
   
     .hero-amp {  
       font-family: var(--font-script);  
-      font-size: 2.1rem;  
+      font-size: 1.85rem;  
       display: block;  
-      margin: 2px 0;  
+      margin: 4px 0;  
       color: var(--gold-primary);  
     }  
   
     .hero-city {  
       letter-spacing: 0.3em;  
-      font-size: 0.9rem;  
+      font-size: 0.82rem;  
       color: var(--gold-bright);  
-      margin-top: 8px;  
+      margin-top: 6px;  
       text-transform: uppercase;  
     }  
   
-    .hero-bottom-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 5;
-  padding: 0 20px 25px;
-  background: none;
-}
+    /* Solid Maroon bottom bar for Scroll Down */  
+    .hero-bottom-fade {  
+      position: absolute;  
+      bottom: 0;  
+      left: 0;  
+      width: 100%;  
+      height: 90px;  
+      z-index: 5;  
+      background: #420B13;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      padding: 0 20px 14px;  
+    }  
+  
     .scroll-down-text {  
       font-family: var(--font-script);  
-      font-size: 2.1rem;  
+      font-size: 2rem;  
       color: var(--gold-bright);  
       display: block;  
     }  
   
-    /* 3. THE DATE (SCRATCH TO REVEAL - MAROON & GOLD) */  
+    @media (max-width: 380px) {  
+      .hero-content {  
+        bottom: 84px;  
+        padding: 65px 12px 12px;  
+      }  
+      .hero-names {  
+        font-size: 2.7rem;  
+      }  
+    }  
+  
+    /* =========================================================  
+       3. THE DATE (SCRATCH TO REVEAL - MAROON & GOLD)  
+       ========================================================= */  
     .scratch-hint {  
       font-style: italic;  
       font-size: 1.1rem;  
@@ -500,142 +517,159 @@
       padding-bottom: 2px;  
     }  
   
-    /* 4. FORMAL ARCH INVITATION CARD */  
+    /* =========================================================  
+       4. FORMAL ARCH INVITATION CARD  
+       ========================================================= */  
     .arch-card-section {  
       padding: 30px 18px;  
     }  
   
-.royal-arch-frame {
-    position: relative;
-    padding: 65px 22px 45px;
-    border: 2px solid var(--gold-primary);
-    border-radius: 220px 220px 18px 18px;
-
-    background: linear-gradient(
-        180deg,
-        rgba(90, 17, 28, 0.7) 0%,
-        rgba(43, 5, 9, 0.9) 100%
-    );
-
-    box-shadow:
-        inset 0 0 0 6px var(--bg-maroon-main),
-        inset 0 0 0 7.5px var(--gold-border),
-        0 12px 35px rgba(0,0,0,0.5);
-
-    width: 100%;
-    max-width: 440px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.royal-arch-frame .ganesh-mantra {
-    margin-top: 12px;
-}
-
-.royal-arch-frame .bride-groom-script {
-    font-size: clamp(2.6rem, 10vw, 3.25rem);
-}
-
-.royal-arch-frame .invite-intro {
-    margin-top: 12px;
-}
+    .royal-arch-frame {  
+      position: relative;  
+      padding: 65px 22px 45px;  
+      border: 2px solid var(--gold-primary);  
+      border-radius: 220px 220px 18px 18px;  
+      background: linear-gradient(  
+        180deg,  
+        rgba(90, 17, 28, 0.7) 0%,  
+        rgba(43, 5, 9, 0.9) 100%  
+      );  
+      box-shadow:  
+        inset 0 0 0 6px var(--bg-maroon-main),  
+        inset 0 0 0 7.5px var(--gold-border),  
+        0 12px 35px rgba(0,0,0,0.5);  
+      width: 100%;  
+      max-width: 440px;  
+      margin: 0 auto;  
+      text-align: center;  
+    }  
+  
+    .ganesh-image {  
+      width: 100%;  
+      max-width: 160px;  
+      height: 160px;  
+      margin: 0 auto 15px;  
+      overflow: hidden;  
+    }  
+  
+    .ganesh-image img {  
+      width: 100%;  
+      height: 100%;  
+      object-fit: contain;  
+      display: block;  
+    }  
+  
+    .royal-arch-frame .ganesh-mantra {  
+      font-family: var(--font-hindi);  
+      font-size: 1.35rem;  
+      color: var(--gold-bright);  
+      margin-top: 12px;  
+    }  
+  
+    .royal-arch-frame .invite-intro {  
+      font-size: 1.15rem;  
+      line-height: 1.55;  
+      color: var(--gold-primary);  
+      margin: 12px 0 18px;  
+    }  
+  
+    .royal-arch-frame .bride-groom-script {  
+      font-family: var(--font-script);  
+      font-size: clamp(2.6rem, 10vw, 3.25rem);  
+      color: var(--gold-bright);  
+      font-weight: 400;  
+      line-height: 1.15;  
+      margin-bottom: 6px;  
+    }  
+  
+    .parents-block {  
+      font-size: 0.92rem;  
+      letter-spacing: 0.12em;  
+      color: var(--gold-primary);  
+      line-height: 1.5;  
+      margin-bottom: 14px;  
+    }  
+  
+    .parents-block .relation {  
+      font-size: 0.74rem;  
+      color: var(--gold-muted);  
+      letter-spacing: 0.2em;  
+    }  
+  
+    .with-script {  
+      font-family: var(--font-script);  
+      font-size: 2.1rem;  
+      color: var(--gold-primary);  
+      margin: 6px 0 10px;  
+    }  
+  
+    .arch-footer-date {  
+      font-size: 1.2rem;  
+      font-weight: 600;  
+      color: var(--gold-bright);  
+      margin-bottom: 4px;  
+    }  
+  
+    .arch-footer-venue {  
+      font-size: 1.08rem;  
+      color: var(--gold-primary);  
+    }  
+  
+    /* =========================================================  
+       5. BLESSINGS SECTION  
+       ========================================================= */  
+    .blessings-quote {  
+      font-style: italic;  
+      font-size: 1.22rem;  
+      color: var(--gold-bright);  
+      max-width: 320px;  
+      margin: 0 auto 24px;  
+      line-height: 1.5;  
+    }  
+  
     .blessings-card {  
       background: linear-gradient(160deg, rgba(84, 16, 26, 0.75) 0%, rgba(43, 5, 9, 0.85) 100%);  
       border: 1.5px solid var(--gold-border);  
       border-radius: 16px;  
       padding: 28px 20px;  
       max-width: 360px;  
-      margin: 0 auto 44px;  
+      margin: 0 auto 20px;  
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);  
     }  
-
+  
     .blessings-list {  
       list-style: none;  
       margin: 12px 0 26px;  
     }  
-
+  
     .blessings-list:last-child {  
       margin-bottom: 0;  
     }  
-
+  
     .blessings-list li {  
       font-size: 1.28rem;  
       color: var(--gold-bright);  
       line-height: 1.75;  
       font-weight: 500;  
     }  
-
-    .story-para {  
-      font-size: 1.24rem;  
-      line-height: 1.65;  
-      color: var(--gold-primary);  
-      max-width: 340px;  
-      margin: 0 auto 34px;  
-    }  
-  
-    .story-timeline {  
-      position: relative;  
-      text-align: left;  
-      max-width: 350px;  
-      margin: 0 auto 48px;  
-      padding-left: 28px;  
-    }  
-  
-    .story-timeline::before {  
-      content: '';  
-      position: absolute;  
-      left: 6px;  
-      top: 12px;  
-      bottom: 12px;  
-      width: 1px;  
-      background-color: var(--gold-primary);  
-    }  
-  
-    .timeline-node {  
-      position: relative;  
-      margin-bottom: 28px;  
-    }  
-  
-    .timeline-diamond {  
-      position: absolute;  
-      left: -27px;  
-      top: 8px;  
-      width: 10px;  
-      height: 10px;  
-      background-color: var(--gold-bright);  
-      border: 1.2px solid var(--bg-maroon-main);  
-      transform: rotate(45deg);  
-      box-shadow: 0 0 8px var(--gold-bright);  
-    }  
-  
-    .timeline-year {  
-      font-family: var(--font-script);  
-      font-size: 2.1rem;  
-      color: var(--gold-bright);  
-      line-height: 1.1;  
-      margin-bottom: 4px;  
-    }  
-  
-    .timeline-desc {  
-      font-size: 1.12rem;  
-      color: var(--gold-primary);  
-      line-height: 1.45;  
-    }  
-  
-    .couple-arches-grid {  
-      display: grid;  
-      grid-template-columns: 1fr 1fr;  
-      gap: 16px;  
-      margin-top: 16px;  
-    }  
   
     .arch-photo-slot {  
       height: 215px;  
+      overflow: hidden;  
       border-radius: 110px 110px 12px 12px;  
       border: 2px solid var(--gold-primary);  
     }  
   
-    /* 6. THE CELEBRATIONS */  
+    .arch-photo-slot img {  
+      width: 100%;  
+      height: 100%;  
+      object-fit: cover;  
+      display: block;  
+    }  
+  
+    /* =========================================================  
+       6. THE CELEBRATIONS  
+       ========================================================= */  
     .events-Wrapper {  
       position: relative;  
       max-width: 400px;  
@@ -737,7 +771,9 @@
       margin-bottom: 6px;  
     }  
   
-    /* 7. COUNTDOWN & LOCATION */  
+    /* =========================================================  
+       7. COUNTDOWN & LOCATION  
+       ========================================================= */  
     .countdown-row {  
       display: flex;  
       justify-content: center;  
@@ -807,6 +843,14 @@
       border-left: none;  
       border-right: none;  
       margin-bottom: 28px;  
+      overflow: hidden;  
+    }  
+  
+    .venue-image {  
+      width: 100%;  
+      height: 100%;  
+      object-fit: cover;  
+      display: block;  
     }  
   
     .map-card-container {  
@@ -874,7 +918,9 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);  
     }  
   
-    /* 8. GETTING THERE & DRESS CODE */  
+    /* =========================================================  
+       8. DRESS CODE  
+       ========================================================= */  
     .travel-text {  
       font-size: 1.2rem;  
       line-height: 1.65;  
@@ -883,17 +929,18 @@
       margin: 0 auto 22px;  
     }  
   
-    .stay-venue-bold {  
-      font-size: 1.28rem;  
-      font-weight: 600;  
-      color: var(--gold-bright);  
-      margin-bottom: 6px;  
-    }  
-  
     .dress-illustration-slot {  
       width: 100%;  
       height: 220px;  
       margin: 22px 0 26px;  
+      overflow: hidden;  
+    }  
+  
+    .dress-code-img {  
+      width: 100%;  
+      height: 100%;  
+      object-fit: contain;  
+      display: block;  
     }  
   
     .dress-table {  
@@ -942,7 +989,9 @@
       border: 1.5px solid var(--gold-bright);  
     }  
   
-    /* 9. OUR FAMILIES & RSVP */  
+    /* =========================================================  
+       9. OUR FAMILIES & RSVP  
+       ========================================================= */  
     .family-group {  
       margin-bottom: 30px;  
     }  
@@ -951,14 +1000,6 @@
       font-size: 1.25rem;  
       line-height: 1.65;  
       color: var(--gold-bright);  
-      margin-top: 8px;  
-    }  
-  
-    .kids-callout {  
-      font-style: italic;  
-      font-size: 1.26rem;  
-      color: var(--gold-bright);  
-      line-height: 1.5;  
       margin-top: 8px;  
     }  
   
@@ -1030,15 +1071,17 @@
       text-transform: uppercase;  
       cursor: pointer;  
     }  
-
-    /* 10. FOOTER CREDIT */  
+  
+    /* =========================================================  
+       10. FOOTER CREDIT & FLOATING CONTROLS  
+       ========================================================= */  
     .site-footer {  
       padding: 36px 24px 48px;  
       text-align: center;  
       border-top: 1px solid var(--gold-border);  
       background: linear-gradient(180deg, var(--bg-maroon-main) 0%, var(--bg-maroon-deep) 100%);  
     }  
-
+  
     .footer-credit {  
       font-size: 1.05rem;  
       letter-spacing: 0.08em;  
@@ -1046,7 +1089,6 @@
       font-style: italic;  
     }  
   
-    /* FLOATING CONTROLS */  
     .floating-controls {  
       position: fixed;  
       bottom: 22px;  
@@ -1073,239 +1115,7 @@
       cursor: pointer;  
       box-shadow: 0 3px 10px rgba(0,0,0,0.5);  
     }  
-  /* ================================
-   IMAGE FIX - ALL SECTIONS
-================================ */
-
-/* 1. HERO COUPLE IMAGE */
-.hero-img-slot {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: none;
-    background: transparent;
-    overflow: hidden;
-}
-
-.hero-couple-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
-
-.ganesh-image {
-    width: 100%;
-    max-width: 160px;
-    height: 160px;
-    margin: 0 auto 15px;
-    overflow: hidden;
-}
-
-.ganesh-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-/* 3. COUPLE ARCH PHOTOS */
-.arch-photo-slot {
-    height: 215px;
-    overflow: hidden;
-    border-radius: 110px 110px 12px 12px;
-}
-
-.arch-photo-slot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* 4. EVENT IMAGES */
-.event-image {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    display: block;
-}
-
-/* 5. VENUE IMAGE */
-.haveli-banner-slot {
-    width: calc(100% + 48px);
-    height: 270px;
-    margin-left: -24px;
-    overflow: hidden;
-}
-
-.venue-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* 6. DRESS CODE IMAGE */
-.dress-illustration-slot {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-}
-
-.dress-code-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-    /* =================================
-   HERO SECTION TEXT RESPONSIVE FIX
-================================= */
-
-.hero-section {
-    min-height: 100svh;
-    height: 100svh;
-    overflow: hidden;
-    position: relative;
-}
-
-.hero-img-slot {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-/* FIX: IMAGE NOT VISIBLE IN SCROLL DOWN AREA */
-
-.hero-section {
-    position: relative;
-    height: 100svh;
-    min-height: 100svh;
-    overflow: hidden;
-    background: #420B13;
-}
-
-/* Couple image ko bottom se pehle hi rokna */
-.hero-img-slot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 100px;
-    z-index: 1;
-    overflow: hidden;
-}
-
-/* Scroll down area - solid maroon */
-.hero-bottom-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    z-index: 10;
-    background: #420B13;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-
-/* Scroll text */
-.scroll-down-text {
-    color: #F7DF94;
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
-}
-.hero-couple-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 35%;
-}
-
-/* Text positioning */
-.hero-content {
-    position: absolute;
-    z-index: 4;
-
-    top: auto;
-    bottom: 115px;
-
-    left: 0;
-    width: 100%;
-
-    padding: 25px 15px 15px;
-
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(43, 5, 9, 0.65),
-        rgba(43, 5, 9, 0.95)
-    );
-    
-    text-align: center;
-}
-
-/* Welcome text */
-.hero-welcome {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    letter-spacing: 0.08em;
-}
-
-/* Couple names */
-.hero-names {
-    font-size: clamp(3rem, 11vw, 4rem);
-    line-height: 0.95;
-    margin: 0;
-}
-
-/* Ampersand */
-.hero-amp {
-    font-size: 1.8rem;
-    margin: 5px 0;
-}
-
-/* City */
-.hero-city {
-    font-size: 0.8rem;
-    margin-top: 5px;
-    letter-spacing: 0.3em;
-}
-
-/* Scroll Down */
-.hero-bottom-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 5;
-    padding: 25px 20px 25px;
-    background: linear-gradient(
-        transparent,
-        #420B13
-    );
-}
-
-.scroll-down-text {
-    font-size: 2rem;
-}
-
-/* Small mobile screens */
-@media (max-width: 380px) {
-    .hero-content {
-        bottom: 105px;
-        padding: 20px 12px;
-    }
-
-    .hero-names {
-        font-size: 2.8rem;
-    }
-}
+  
     .audio-fab {  
       width: 54px;  
       height: 54px;  
@@ -1322,6 +1132,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.6);  
     }  
   </style>
+
 
 </head>  
 <body>
