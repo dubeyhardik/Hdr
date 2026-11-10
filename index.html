@@ -1626,28 +1626,30 @@
       <svg width="210" height="28" viewBox="0 0 210 28"><use href="#royal-floral-divider"/></svg>  
     </div>  
 
-    <div class="song-player-box">  
-      <button class="song-play-circle" id="song-toggle-btn" type="button">❚❚</button>  
+        <div class="song-player-box">  
+      <button class="song-play-circle" id="song-toggle-btn" type="button">▶</button>  
       <div>  
         <div style="font-weight: 600; font-size: 1.15rem; color: var(--gold-bright);">Swati &amp; Shubham's Theme</div>  
         <div style="font-style: italic; font-size: 0.95rem; color: var(--gold-primary);">Royal Wedding Instrumental</div>  
       </div>  
-    </div>  
+    </div>
 
-    <div class="rsvp-box" id="Wishes ">  
+
+        <div class="rsvp-box" id="rsvp">  
       <h3 style="font-family: var(--font-script); font-size: 2.5rem; color: var(--gold-bright); text-align: center; margin-bottom: 14px;">RSVP</h3>  
       <form id="whatsapp-rsvp-form">  
         <input type="text" id="guest-name" class="rsvp-input" placeholder="Your Full Name" required />  
         <select id="guest-count" class="rsvp-select">  
-          <option value="1 Guest">Attending — 1 Guest</option>  
-          <option value="2 Guests" selected>Attending — 2 Guests</option>  
-          <option value="Family (3-4 Guests)">Attending — Family (3–4 Guests)</option>  
-          <option value="Warm Wishes Only">Unable to attend, sending warm wishes</option>  
+          <option value="Attending — 1 Guest">Attending — 1 Guest</option>  
+          <option value="Attending — 2 Guests" selected>Attending — 2 Guests</option>  
+          <option value="Attending — Family (3–4 Guests)">Attending — Family (3–4 Guests)</option>  
+          <option value="Unable to attend, sending warm wishes">Unable to attend, sending warm wishes</option>  
         </select>  
-        <input type="text" id="guest-note" class="rsvp-input" placeholder="Arrival details or wishes for the couple (optional)" />  
+        <input type="text" id="guest-note" class="rsvp-input" value="Heartiest congratulations to Swati & Shubham! Looking forward to celebrating with you." placeholder="Arrival details or wishes for the couple" />  
         <button type="submit" class="rsvp-submit">Confirm via WhatsApp</button>  
       </form>  
     </div>
+
   </section>
 
   <!-- =========================================================  
@@ -1666,7 +1668,17 @@
     
   </div>
 
-  
+    <!-- Background Music Audio Element -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Language & Audio Controls -->
+  <div class="floating-controls">  
+    <button class="lang-pill" id="lang-toggle" type="button" title="Switch Language">हिं</button>  
+    <button class="audio-fab" id="audio-fab" type="button" title="Play/Pause Music">♪</button>
+  </div>
+
 
   <script>  
     // =========================================================  
@@ -1846,11 +1858,54 @@
       this.style.display = 'none';  
     });  
   
-    let isPlaying = true;  
+        // =========================================================  
+    // 4. MAP, AUDIO & LANGUAGE CONTROLS  
+    // =========================================================  
+    document.getElementById('show-map-btn').addEventListener('click', function() {  
+      document.getElementById('google-map-iframe').style.display = 'block';  
+      this.style.display = 'none';  
+    });  
+  
+    let isPlaying = false;  
     const audioFab = document.getElementById('audio-fab');  
     const songBtn = document.getElementById('song-toggle-btn');  
     const bgMusic = document.getElementById('bg-music');  
-  
+
+    function updateAudioUI(playing) {
+      isPlaying = playing;
+      if (audioFab) audioFab.textContent = playing ? '❚❚' : '♪';
+      if (songBtn) songBtn.textContent = playing ? '❚❚' : '▶';
+    }
+
+    function toggleMusic() {
+      if (!bgMusic) return;
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          updateAudioUI(true);
+        }).catch(err => console.log('Audio play error:', err));
+      } else {
+        bgMusic.pause();
+        updateAudioUI(false);
+      }
+    }
+
+    if (audioFab) audioFab.addEventListener('click', toggleMusic);
+    if (songBtn) songBtn.addEventListener('click', toggleMusic);
+
+    // First touch/click par music automatically start karne ke liye (Mobile Browser Policy)
+    function startMusicOnFirstInteraction() {
+      if (bgMusic && bgMusic.paused && !isPlaying) {
+        bgMusic.play().then(() => {
+          updateAudioUI(true);
+        }).catch(() => {});
+      }
+      window.removeEventListener('click', startMusicOnFirstInteraction);
+      window.removeEventListener('touchstart', startMusicOnFirstInteraction);
+    }
+
+    window.addEventListener('click', startMusicOnFirstInteraction, { once: true });
+    window.addEventListener('touchstart', startMusicOnFirstInteraction, { once: true });
+
     
     let isHindi = false;  
     document.getElementById('lang-toggle').addEventListener('click', function() {  
@@ -1861,8 +1916,8 @@
       });  
     });  
   
-    // =========================================================  
-    // 5. WHATSAPP RSVP INTEGRATION  
+        // =========================================================  
+    // 5. WHATSAPP RSVP INTEGRATION (PRE-FILLED MESSAGE)  
     // =========================================================  
     document.getElementById('whatsapp-rsvp-form').addEventListener('submit', function(e) {  
       e.preventDefault();  
@@ -1870,15 +1925,22 @@
       const count = document.getElementById('guest-count').value;  
       const note = document.getElementById('guest-note').value.trim();  
   
-      const msg = `*Royal Wedding RSVP — Swati & Shubham*%0A` +  
-                  `----------------------------------%0A` +  
-                  `*Name:* ${encodeURIComponent(name)}%0A` +  
-                  `*Status:* ${encodeURIComponent(count)}%0A` +  
-                  (note ? `*Note:* ${encodeURIComponent(note)}%0A` : '') +  
-                  `*Venue:* Jamna Baa Party Plot, Vesu, Surat (8–9 Dec 2026)`;  
-  
-      window.open(`https://wa.me/917490913399?text=${msg}`, '_blank');  
-    });  
+      const fullMessage = 
+        `🙏 *नमस्ते दुबे परिवार!*\n\n` +
+        `✨ *Royal Wedding RSVP — Swati & Shubham* ✨\n` +
+        `----------------------------------\n` +
+        `👤 *Guest Name:* ${name}\n` +
+        `🎉 *Attendance:* ${count}\n` +
+        (note ? `💌 *Message/Wishes:* ${note}\n` : '') +
+        `----------------------------------\n` +
+        `📅 *Dates:* 8 & 9 December 2026\n` +
+        `📍 *Venue:* Jamna Baa Party Plot, Vesu, Surat\n\n` +
+        `Thank you for the lovely wedding invitation! 💐`;
+
+      const whatsappURL = `https://wa.me/917490913399?text=${encodeURIComponent(fullMessage)}`;  
+      window.open(whatsappURL, '_blank');  
+    });
+
   </script>  
 </body>  
 </html>
