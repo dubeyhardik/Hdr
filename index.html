@@ -1178,7 +1178,48 @@
     inset: 0;
     z-index: 1;
 }
+/* FIX: IMAGE NOT VISIBLE IN SCROLL DOWN AREA */
 
+.hero-section {
+    position: relative;
+    height: 100svh;
+    min-height: 100svh;
+    overflow: hidden;
+    background: #420B13;
+}
+
+/* Couple image ko bottom se pehle hi rokna */
+.hero-img-slot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 100px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Scroll down area - solid maroon */
+.hero-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    background: #420B13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Scroll text */
+.scroll-down-text {
+    color: #F7DF94;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+}
 .hero-couple-img {
     width: 100%;
     height: 100%;
@@ -1374,7 +1415,7 @@
     </div>  
 
     <div class="hero-bottom-fade">  
-      <span class="scroll-down-text"></span>  
+      <span class="scroll-down-text">Scroll Down </span>  
     </div>
   </section>
 
